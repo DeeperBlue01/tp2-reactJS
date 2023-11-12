@@ -1,10 +1,17 @@
 import React from 'react';
 import data from '../public/characters.json';
+import LoginPage from './LoginPage';
 
-function App() {
+function Characters({ onLogout }) {
   return (
     <div className="bg-black h-screen w-screen text-white p-4">
-      <div className="mx-40 my-20"> 
+      <div className="mx-40 my-20">
+        <button
+          className="bg-black text-white font-light py-2 px-8 rounded absolute top-4 right-4"
+          onClick={onLogout}
+        >
+          Se deconnecter
+        </button>
         <div className="grid grid-cols-4 gap-4">
           {data.map((character, index) => (
             <div
@@ -48,4 +55,4 @@ function App() {
   );
 }
 
-export default App;
+export default Characters;
