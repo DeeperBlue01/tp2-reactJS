@@ -1,24 +1,51 @@
 import React from 'react';
-import charactersData from '../public/characters.json'; 
+import data from '../public/characters.json';
 
-const CharactersPage = () => {
-  const characters = charactersData;
-
+function App() {
   return (
-    <div className="flex flex-wrap justify-center bg-gray-800 p-8">
-      {characters.map((character, index) => (
-        <div key={index} className="m-4 p-6 bg-gray-200 rounded-md text-black">
-          <img
-            src={`/images${character.imageUrl}`}
-            alt={character.name}
-            className="mb-4 max-w-full max-h-32"
-          />
-          <h2 className="text-xl font-bold mb-2">{character.name}</h2>
-          <p>{character.description}</p>
+    <div className="bg-black h-screen w-screen text-white p-4">
+      <div className="mx-40 my-20"> 
+        <div className="grid grid-cols-4 gap-4">
+          {data.map((character, index) => (
+            <div
+              key={index}
+              className={`bg-neutral-800 p-4 rounded-lg ${
+                index === 0
+                  ? 'col-span-1 row-span-1'
+                  : index === 1
+                  ? 'col-span-1 row-span-1'
+                  : index === 2
+                  ? 'col-span-2 row-span-2'
+                  : index === 3
+                  ? 'col-span-2 row-span-1'
+                  : index >= 4 && index <= 8
+                  ? 'col-span-1 row-span-1'
+                  : 'col-span-1 row-span-1'
+              }`}
+            >
+              <h2 className="font-light text-xl text-slate-300 font-semibold">{character.name}</h2>
+              {index === 2 ? (
+                <img
+                  src={`/images${character.imageUrl}`}
+                  alt={character.name}
+                  className="mt-2 max-h-64 max-w-64 object-cover"
+                />
+              ) : (
+                <div className="mt-2 w-16 h-16 rounded-full overflow-hidden flex items-center justify-center">
+                  <img
+                    src={`/images${character.imageUrl}`}
+                    alt={character.name}
+                    className="max-w-full max-h-full"
+                  />
+                </div>
+              )}
+              <p className="text-neutral-500 mt-2 text-xl">{character.description}</p>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
-};
+}
 
-export default CharactersPage;
+export default App;
